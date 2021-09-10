@@ -1,0 +1,22 @@
+﻿using CleanArch.Domain.Interfaces;
+using CleanArch.Infra.Data.Repository;
+using ClearArch.Application.Interfaces;
+using ClearArch.Application.Services;
+using Microsoft.Extensions.DependencyInjection;
+using System;
+using System.Collections.Generic;
+using System.Text;
+
+namespace CleanArch.Infra.IoC
+{
+    public class DependecyContainer
+    {
+        public static void RegisterServices(IServiceCollection services)
+        {
+            //Application Layer
+            services.AddScoped<ICourseService, CourseService>();
+            //Infra.Data Layer
+            services.AddScoped<ICourseRepository, CourseRepository>();
+        }
+    }
+}

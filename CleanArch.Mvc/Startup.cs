@@ -10,7 +10,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using CleanArch.Infra.Data.Context;
-
+using CleanArch.Infra.IoC;
 
 namespace CleanArch.Mvc
 {
@@ -31,6 +31,8 @@ namespace CleanArch.Mvc
             {
                 options.UseSqlServer(Configuration.GetConnectionString("UniversityDBConnection"));
             });
+
+            RegisterServices(services);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -59,6 +61,11 @@ namespace CleanArch.Mvc
                     name: "default",
                     pattern: "{controller=Home}/{action=Index}/{id?}");
             });
+        }
+
+        private static void RegisterServices(IServiceCollection services)
+        {
+            DependecyContainer.RegisterServices(services);
         }
     }
 }
