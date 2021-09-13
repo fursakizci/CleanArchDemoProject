@@ -11,6 +11,7 @@ using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using CleanArch.Infra.Data.Context;
 using CleanArch.Infra.IoC;
+using CleanArch.Mvc.Identity;
 
 namespace CleanArch.Mvc
 {
@@ -30,9 +31,16 @@ namespace CleanArch.Mvc
             services.AddDbContext<UniversityDbContext>(options =>
             {
                 options.UseSqlServer(Configuration.GetConnectionString("UniversityDBConnection"));
+                
             });
-
+            services.AddDbContext<ApplicationIdentityDbContext>(options =>
+            {
+               options.UseSqlServer(Configuration.GetConnectionString("UniversityIdentityDBConnection"));
+            });
+          
             RegisterServices(services);
+
+            
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
